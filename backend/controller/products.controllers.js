@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 export const getproduct = async (req, res) => {
   try {
     const prodata = await productmodel.find({});
-    res.status(200).json({ success: true, data: prodata });
+    res.status(200).json({success: true, data: prodata});  // ✅ Correct
   } catch (error) {
     console.error(`Error: ${error.message}`);
     res.status(500).json({ success: false, message: error.message });
