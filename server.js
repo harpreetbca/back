@@ -1,22 +1,26 @@
-import connection from './backend/config/db.js';
-import route from './backend/routes/apiroutes.js';
-import express from 'express';
-import dotenv from 'dotenv';
-import cors from 'cors';
+import express from "express";
+import dotenv from "dotenv";
+import cors from "cors";
+import route from "./routes/apiroutes.js";
+import connection from "./config/db.js";
 
 dotenv.config();
 const app = express();
 const Port = process.env.PORT || 5000;
 
-// Middleware
-app.use(cors()); // Allow cross-origin requests from frontend
 app.use(express.json());
 
-// Routes
+// ALLOW CORS for your frontend
+app.use(
+  cors({
+    origin: "https://frontend-3wn7.onrender.com", // <-- frontend URL
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
+
 app.use("/products", route);
 
-// Start server
 app.listen(Port, () => {
-    connection();
-    console.log(`Server connected on port ${Port}`);
+  connection();
+  console.log(`Server connected on port ${Port}`);
 });
