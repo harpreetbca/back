@@ -10,15 +10,17 @@ const Port = process.env.PORT || 5000;
 
 app.use(express.json());
 
-// ALLOW CORS for your frontend
+// ✅ Add CORS here, before routes
 app.use(
   cors({
-    origin: "https://frontend-3wn7.onrender.com", // <-- frontend URL
+    origin: "https://frontend-3wn7.onrender.com", // your frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
 
+
 app.use("/products", route);
+
 
 app.listen(Port, () => {
   connection();
